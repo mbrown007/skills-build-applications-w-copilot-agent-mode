@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import db from './config/database';
 import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
@@ -13,6 +14,7 @@ const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${port}`;
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/users', usersRouter);
