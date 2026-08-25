@@ -4,10 +4,6 @@ export const apiBaseUrl = codespaceName
   ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev`
   : 'http://localhost:8000'
 
-export function apiEndpoint(component) {
-  return `${apiBaseUrl}/api/${component}/`
-}
-
 export function getCollection(payload, key) {
   if (Array.isArray(payload)) {
     return payload
@@ -32,8 +28,8 @@ export function getCollection(payload, key) {
   return []
 }
 
-export async function fetchCollection(component, key) {
-  const response = await fetch(apiEndpoint(component))
+export async function fetchCollection(endpoint, key) {
+  const response = await fetch(endpoint)
 
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`)
